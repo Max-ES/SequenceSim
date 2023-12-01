@@ -27,7 +27,7 @@ let robotTimeTrashNeutral = 4
 
 let robotWaitOffsetTillPressFinishes = 2
 
-let pressTime = 2
+let pressTime = 10
 
 const FRAME_RATE = 60
 let processCount = 0
@@ -38,7 +38,6 @@ let speedUp = 1
 
 let selectLoopStep, lowerLoopStartStep, upperLoopStartStep, discardStepFromPresse, discardStepFromBand, discardStep2
 
-// todo positive and negative offset counter before robot gets next part
 function setup() {
     createCanvas(700, 300);
     frameRate(FRAME_RATE);
@@ -84,6 +83,7 @@ function setup() {
     gates = [gate, ovenGate, pickupGate, gate2, ovenGate2, pickupGate2]
     parts = []
     press = new Machine(margin + l + 90, margin + h + loopMargin / 2, 35, 35, "Presse")
+    press.processedTime = pressTime
     machines = [press]
     spawnTimer0 = new Timer(1, () => addPartToCarrierOpenGate(gate, oven))
     spawnTimer1 = new Timer(5, () => addPartToCarrierOpenGate(gate2, oven2))

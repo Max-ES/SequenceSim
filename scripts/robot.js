@@ -36,7 +36,6 @@ class Robot {
             let dir = createVector(this.target.x - this.end.x, this.target.y - this.end.y);
             dir.normalize();
             dir.mult(this.v);
-            console.log(dist(this.end.x, this.end.y, this.end.x+dir.x, this.end.y+dir.y))
             this.end.x += dir.x;
             this.end.y += dir.y;
         }
@@ -50,14 +49,14 @@ class Robot {
 
     setStep(s) {
         if (!this.timeToExecuteCommand()) return
-        console.log(`set step to value:${s}`)
+        if (this.debug) console.log(`set step to value:${s}`)
         //debugger
         this._currentCommandStep = s
     }
 
     forceStep(s) {
         this._currentCommandStep = s
-        console.log(`force step to value ${s}`)
+        if (this.debug) console.log(`force step to value ${s}`)
     }
 
     beginCommands() {
