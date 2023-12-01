@@ -8,6 +8,8 @@ class Part {
     ovenTime = 0
     maxOvenTime = 5
     minOvenTime = 1
+    coolingTime = 0
+    maxCoolingTime = 5
 
     constructor(x = 0, y = 0, r = 30) {
         this.x = x
@@ -18,6 +20,7 @@ class Part {
     render() {
         let c = color("#646060")
         if (this.ovenTime > this.minOvenTime) c = color("#568151")
+        if (this.coolingTime > this.maxCoolingTime) c = color("#ab9f18")
         if (this.ovenTime > this.maxOvenTime) c = color("#914848")
         fill(c)
         noStroke()
@@ -39,6 +42,9 @@ class Part {
             // check if carrier is in oven -> inc oven timer
             if (this.carrier.currentConveyor instanceof Oven) {
                 this.ovenTime += 1/FRAME_RATE
+            }
+            if (this.carrier instanceof Robot) {
+                this.coolingTime += 1/FRAME_RATE
             }
         }
     }

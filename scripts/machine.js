@@ -1,6 +1,7 @@
 class Machine {
     processingTime = 2
     isProcessing = false
+    isBlocked = false
     processedTime = 0
 
     carriedObject = undefined
@@ -15,6 +16,7 @@ class Machine {
 
     render() {
         textAlign(CENTER, CENTER)
+        stroke(this.isBlocked? "#8d3d3d" : 255)
         fill(this.isProcessing ? color(255) : color(0, 0))
         rect(this.x, this.y, this.w, this.h)
         noStroke()
@@ -28,8 +30,12 @@ class Machine {
     }
 
     startProcessing() {
-        console.log("processing started")
         this.isProcessing = true
+    }
+
+    get timeUntilFinished() {
+        if (!this.isProcessing) return 0
+        return this.processingTime - this.processedTime
     }
 
     removeCarriedObject() {

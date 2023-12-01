@@ -8,11 +8,17 @@ function addPartToCarrierOpenGate(gate, oven) {
     if (oven.carriedObjectsCount >= OVEN_CARRIER_CAPACITY) return
     if (gate.intersectingObj) {
         const carrier = gate.intersectingObj
-        const part = new Part()
+        const part = new Part(-100, -100)
         part.carrier = carrier
         parts.push(part)
     }
     gate.isOpen = true;
+}
+
+function addText(txt, x, y, color = 255) {
+    noStroke()
+    fill(color)
+    text(txt, x, y)
 }
 
 function linesIntersect(begin0, end0, begin1, end1) {
