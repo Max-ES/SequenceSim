@@ -10,9 +10,9 @@ const CARRIER_WIDTH = 30
 const CARRIER_COUNT = 11
 const CARRIER_COLLISION_MARGIN = 5
 
-let MIN_OVEN_TIME = 5
-let MAX_OVEN_TIME = 10
-let MAX_COOLING_TIME = 10
+let MIN_OVEN_TIME = 310
+let MAX_OVEN_TIME = 560
+let MAX_COOLING_TIME = 16
 const OVEN_CARRIER_CAPACITY = 10
 let spawnTimer0, spawnTimer1
 
@@ -27,14 +27,14 @@ let robotTimeTrashNeutral = 4
 
 let robotWaitOffsetTillPressFinishes = 2
 
-let pressTime = 10
+let pressTime = 6
 
 const FRAME_RATE = 60
 let processCount = 0
 
 let trashCount = 0
 
-let speedUp = 1
+let speedUp = 4
 
 let selectLoopStep, lowerLoopStartStep, upperLoopStartStep, discardStepFromPresse, discardStepFromBand, discardStep2
 
