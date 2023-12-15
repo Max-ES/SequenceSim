@@ -16,8 +16,13 @@ function addInput(label, labelEnd, initialValue, onChangeCallback, parent = "gui
     input.type = 'number';
     input.className = 'form-control';
     input.id = label.replace(/\s+/g, '-').toLowerCase(); // Example to generate an id
+    initialValue = getValue(label) ?? initialValue
+    input.addEventListener('change', (evnt) => {
+        storeValue(evnt, label)
+        onChangeCallback(evnt);
+    });
     input.value = initialValue;
-    input.addEventListener('change', (evnt) => onChangeCallback(evnt));
+    input.dispatchEvent(new Event('change', {target: {value: initialValue}}))
 
     // Create the second span element for the label end
     const spanLabelEnd = document.createElement('span');
@@ -54,8 +59,12 @@ function addToggle(label, isChecked, onChangeCallback, parent = "gui") {
     input.type = 'checkbox';
     input.role = 'switch';
     input.id = label.replace(/\s+/g, '-').toLowerCase(); // Generate an id based on the label
-    input.checked = isChecked;
-    input.addEventListener('change', () => onChangeCallback(input.checked));
+    input.checked = getValue(label) ?? isChecked;
+    input.addEventListener('change', () => {
+        onChangeCallback(input.checked)
+        storeValue(input.checked, label)
+    });
+    input.dispatchEvent(new Event('change'))
 
     // Create the label element
     const labelElement = document.createElement('label');
@@ -71,3 +80,15 @@ function addToggle(label, isChecked, onChangeCallback, parent = "gui") {
     gui.appendChild(div);
 }
 
+function storeValue(event, name) {
+    const v = typeof event === "boolean" ? event : event.target.value
+    window.localStorage.setItem(name, v)
+}
+
+function getValue(name) {
+    const v = window.localStorage.getItem(name)
+    if (v === "true") return true
+    if (v === "false") return false
+    return v
+
+}

@@ -99,10 +99,10 @@ function setup() {
     addInput("maximale Abkühlzeit", "s", MAX_COOLING_TIME, (e) => MAX_COOLING_TIME = e.target.value)
     addToggle("Presse aktiv", true, (c) => press.isBlocked = !c)
     addInput("Zeit Presse", "s", pressTime, (e) => press.processingTime = e.target.value)
-    addToggle("Band 1 einlegen", true, (c) => spawnTimer0.isRunning = c)
+    addToggle("Band 1 einlegen", false, (c) => spawnTimer0.isRunning = c)
     addToggle("Band 1 anfahren", true, (c) => upperLoopActive = c)
     addInput("Band 1 Teil einlegen aller", "s", spawnTimer0.time, (e) => spawnTimer0.time = e.target.value)
-    addToggle("Band 2 einlegen", true, (c) => spawnTimer1.isRunning = c)
+    addToggle("Band 2 einlegen", false, (c) => spawnTimer1.isRunning = c)
     addToggle("Band 2 anfahren", true, (c) => lowerLoopActive = c)
     addInput("Band 2 Teil einlegen aller", "s", spawnTimer1.time, (e) => spawnTimer1.time = e.target.value)
 
